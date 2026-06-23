@@ -39,9 +39,10 @@ jobs:
         chmod +x kubectl
         sudo mv kubectl /usr/local/bin/
 
-    -- name: Update kubeconfig
+    - name: Update kubeconfig
       run: |
-            aws eks update-kubeconfig --name eks-learning --region ${{ secrets.AWS_REGION }} --role-arn arn:aws:iam::495599752398:role/eksctl-eks-learning-cluster-ServiceRole-SJ8yuombivJb
+        aws eks update-kubeconfig --name eks-learning --region ${{ secrets.AWS_REGION }}
+
     - name: Deploy to EKS
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
